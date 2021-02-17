@@ -7,15 +7,14 @@
             <h2>Ajouter une annonce</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('annonces.index') }}" title="Go back"> <i
+            <a class="btn immo-color" href="{{ route('annonces.index') }}" title="index"> <i
                     class="fas fa-backward "></i> </a>
         </div>
     </div>
 </div>
-
 @if ($errors->any())
 <div class="alert alert-danger">
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <strong>oops!</strong> Veuillez suivre les instructions.<br><br>
     <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
@@ -23,38 +22,62 @@
     </ul>
 </div>
 @endif
+
 <form action="{{ route('annonces.store') }}" method="POST">
     @csrf
     <input type="hidden" name="_token" value="{{ csrf_token()}}">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Reférence de l'annonce :</strong>
-                <input type="text" name="ref_annonce" class="form-control" placeholder="Référence">
+                <label for="ref_annonce">Reférence de l'annonce :</label>
+                <input type="text" id="ref_annonce" name="ref_annonce" class="form-control @error('ref_annonce') is-invalid @enderror" placeholder="15254G">
+                @error('ref_annonce')
+                    <div class="alert alert-danger">
+                        {{ $errors->first('ref_annonce')}}
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Prix :</strong>
-                <textarea class="form-control" style="height:50px" name="prix"
-                    placeholder="prix"></textarea>
+                <label for="prix" class="form-label">Prix :</label>
+                <input class="form-control @error('prix') is-invalid @enderror" id="prix" name="prix"
+                    placeholder="25.01">
+                    @error('prix')
+                    <div class="alert alert-danger">
+                        {{ $errors->first('prix')}}
+                    </div>
+                    @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Surface :</strong>
-                <input type="text" name="surface" class="form-control" placeholder="Surface">
+                <label for="surface" class="form-label">Surface :</label>
+                <input type="text" name="surface" id="surface" class="form-control @error('surface') is-invalid @enderror"
+                  placeholder="120">
+                @error('surface')
+                <div class="alert alert-danger">
+                    {{ $errors->first('surface')}}
+                </div>
+                @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nombre de pièces :</strong>
-                <input type="number" name="nb_piece" class="form-control" placeholder="Nombre de pièces">
+                <label for="nb_piece" class="form-label">Nombre de pièces :</label>
+                <input type="text" id="nb_piece" name="nb_piece" class="form-control @error('nb_piece') is-invalid @enderror"
+                placeholder="Nombre de pièces">
+                @error('nb_piece')
+                <div class="alert alert-danger">
+                    {{ $errors->first('nb_piece')}}
+                </div>
+                @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
+
     </div>
 
 </form>
