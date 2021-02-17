@@ -1,0 +1,34 @@
+.immo-color
+{
+    color: white ;
+    background-color: #a1d727;
+    border-color: #a1d727;
+}
+ .logo {
+     border: 3px solid #a1d727;
+     border-top: none;
+     position: relative;
+     display: block;
+     width: 130px;
+     background: #fff;
+     padding: 10px;
+     display: inline-block;
+ }
+
+ .content {
+     margin-top: 3rem;
+ }
+
+ .top-nav {
+     background-color: #fff;
+     width: 100%;
+     transition: all .35s;
+     border-bottom: 5px solid #a1d727;
+     box-shadow: 0 5px 5px rgb(5 5 5 / 28%);
+     height: 120px;
+     padding: 0;
+ }
+.eye-color
+{
+    color:#a1d727;
+}
