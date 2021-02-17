@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Annonce;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\Validator;
 
 class AnnonceController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +18,11 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        $annonces = Annonce::latest()->paginate(5);
-      
-        return view('Annonces.Index', compact('annonces'))->with('i', (request()->input('page', 1) - 1) * 5);;
+        $annonces = Annonce::sortable()->paginate(5);
+
+
+
+        return view('Annonces.Index', compact('annonces'));
 
     }
 
@@ -40,15 +46,15 @@ class AnnonceController extends Controller
     {
 
         $request->validate([
-            'ref_annonce' => 'required',
+            'ref_annonce' => 'required|unique:annonces,ref_annonce',
             'prix' => 'required',
             'surface' => 'required',
             'nb_piece' => 'required'
         ]);
+
         Annonce::create($request->all());
+        return redirect()->route('annonces.index')->with('success', 'Félicitation ! votre annonce a été ajouté');
 
-
-        return redirect()->route('annonces.index')->with('success', 'Annonce mise en ligne');
     }
 
     /**
