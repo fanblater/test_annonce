@@ -15,12 +15,11 @@ class CreateAnnoncesTable extends Migration
     {
         Schema::create('annonces', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ref_annonce');
-            $table->decimal('prix', 5, 2);
-            $table->decimal('surface', 4, 2);
-            $table->integer('nb_piece');
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+            $table->string('ref_annonce')->nullable()->unique();
+            $table->decimal('prix', 22, 2)->nullable()->default(0.00);
+            $table->decimal('surface', 4, 2)->nullable();
+            $table->integer('nb_piece')->nullable();
+
         });
     }
 
