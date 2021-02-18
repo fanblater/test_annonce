@@ -16,7 +16,7 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        $annonces = Annonce::sortable()->paginate(5);
+        $annonces = Annonce::sortable()->paginate(25);
         return view('Annonces.Index', compact('annonces'));
     }
 
