@@ -14,8 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+/**
+ * Init route / with Layouts.app view
+ */
 Route::get('/', function () {
     return view('Layouts.app');
 });
 
+/**
+ * This single route resource create multiple
+ * routes for every actions on the controller
+ */
 Route::resource('annonces', AnnonceController::class);
+
+
+/**
+ * Route redirect from / to /annonces path
+ */
+Route::redirect('/','/annonces');
