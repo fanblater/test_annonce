@@ -87,9 +87,9 @@ class AnnonceController extends Controller
     public function update(Request $request, Annonce $annonce)
     {
 
-        //$request validate input only if required and unique inputs are valid
+        //$request validate input only if required inputs are valid
         $request->validate([
-            'ref_annonce' => 'required|unique:annonces,ref_annonce',
+            'ref_annonce' => 'required',
             'prix' => 'required',
             'surface' => 'required',
             'nb_piece' => 'required'
