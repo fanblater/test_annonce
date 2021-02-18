@@ -4,7 +4,7 @@
 
 * Connectez vous avec les bonnes permissions (root ou superadmin)
 * Clonez le repo `git clone https://github.com/fanblater/test_annonce.git`
-* Accédez au projet via la commande `cd test-annonce`
+* Accédez au projet via la commande `cd test_annonce`
 * Installez les dépendances du projet à partir de composer via la commandes `composer install` 
     * Il faut également installer le package kyslik/column-sortable de composer via la commande `composer require kyslik/column-sortable` 
 * Le fichier .env n'est pas soumis au repo git pour des raisons de sécurité il faudra alors faire une copie de .env.example vers .env via la commande `cp .env.exemple .env` 
