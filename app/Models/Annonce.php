@@ -13,19 +13,32 @@ class Annonce extends Model
     use HasFactory;
     use Sortable;
 
+
+    /**
+     * Timestamp to false for desactivation of
+     * required data "updated_at" "created_at"
+     */
     public $timestamps = false;
 
+
+    /**
+     * Declare name of the table
+     */
     protected $table = "annonces";
 
-    protected $cast = [
-        'prix' => 'float'
-    ];
 
+
+    /**
+     * Declare sortable for sorting data based on price and surface
+     */
     protected $sortable = [
         'prix',
         'surface'
     ];
 
+    /**
+     * Declare fillable to insert all data's at once
+     */
     protected $fillable = [
         'ref_annonce',
         'prix',
