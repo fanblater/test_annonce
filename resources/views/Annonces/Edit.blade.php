@@ -7,7 +7,7 @@
             <h2>Modifier l'annonce </h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('annonces.index') }}" title="Go back"> <i
+            <a class="btn immo-color" href="{{ route('annonces.index') }}" title="Go back"> <i
                     class="fas fa-backward "></i> </a>
         </div>
     </div>
@@ -38,8 +38,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Prix:</strong>
-                <textarea class="form-control" style="height:50px" name="prix"
-                    placeholder="prix">{{ $annonce->prix }}</textarea>
+                <input class="form-control" style="height:50px" name="prix"
+                    placeholder="prix" value="{{ $annonce->prix }}"/>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -52,7 +52,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre de pièces:</strong>
-                <input type="number" name="nb_piece" class="form-control" placeholder="{{ $annonce->nb_piece }}"
+                <input type="text" name="nb_piece" class="form-control" placeholder="{{ $annonce->nb_piece }}"
                     value="{{ $annonce->nb_piece }}">
             </div>
         </div>
