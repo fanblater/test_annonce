@@ -1,62 +1,30 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Guide d'installation pour l'application test-annonce fait avec le framework Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Connectez vous avec les bonnes permissions (root ou superadmin)
+* Clonez le repo `git clone https://github.com/fanblater/test_annonce.git`
+* Accédez au projet via la commande `cd test-annonce`
+* Installez les dépendances du projet à partir de composer via la commandes `composer install` 
+    * Il faut également installer le package kyslik/column-sortable de composer via la commande `composer require kyslik/column-sortable` 
+* Le fichier .env n'est pas soumis au repo git pour des raisons de sécurité il faudra alors faire une copie de .env.exemple vers .env via la commande `cp .env.exemple .env` 
+    * Si le fichier .env n'est pas créé vous pouvez alors le faire par la commande `touch .env` à la racine du projet
+* Générez votre clé d'encryption afin que l'application puisse encoder divers éléments de l'application. Pour cela utilisez la commande : `php artisan key:generate`.
+    * Si vous fermez et ré-ouvrez le fichier .env, vous verrez qu'un clé a été généré dans la variable APP_KEY
+* Partie base de données:
+    * Afin d'avoir les bonnes permissions sur le projet vous pouvez utiliser les commandes suivantes : 
+        * `chmod 755 -R test-annonce/`
+        * `chmod -R o+w test-annonce/storage`
+    * Il faut également nettoyer le projet via les commandes : 
+        * `php artisan cache clear`
+        * `php artisan view:clear`
+        * `php artisan config:clear`
+* Créez une base de donnée vide pour le projet
+* Configurez le fichier .env pour permettre la connexion à la base de donnée
+* Ajoutez les tables et le contenu de la base avec les migrations
+    * `php artisan migrate:fresh`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+##Une fois le projet installé et la base de donnée créé vous pouvez démarrer le projet 
+via la commande `php artisan serve` depuis le projet
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
