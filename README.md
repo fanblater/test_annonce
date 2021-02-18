@@ -24,7 +24,7 @@
 * Ajoutez les tables et le contenu de la base avec les migrations
     * `php artisan migrate:fresh`
 
-##Une fois le projet installé et la base de donnée créé vous pouvez démarrer le projet 
+## Une fois le projet installé et la base de donnée créé vous pouvez démarrer le projet 
 via la commande `php artisan serve` depuis le projet
 
 
