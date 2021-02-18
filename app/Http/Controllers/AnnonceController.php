@@ -10,24 +10,18 @@ use Illuminate\Support\Facades\Validator;
 class AnnonceController extends Controller
 {
 
-
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Resource @index
+     * return a listing of resource annonces
      */
     public function index()
     {
         $annonces = Annonce::sortable()->paginate(5);
-
-
-
         return view('Annonces.Index', compact('annonces'));
-
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new annonce.
      *
      * @return \Illuminate\Http\Response
      */
@@ -37,14 +31,16 @@ class AnnonceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly annonce created resource in storage.
+     * with required and unique validation on form
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return success with redirection on index resource
      */
     public function store(Request $request)
     {
 
+        //$request validate input only if required and unique inputs are valid
         $request->validate([
             'ref_annonce' => 'required|unique:annonces,ref_annonce',
             'prix' => 'required',
@@ -52,16 +48,18 @@ class AnnonceController extends Controller
             'nb_piece' => 'required'
         ]);
 
+        //Annonce model created with all data from request
         Annonce::create($request->all());
-        return redirect()->route('annonces.index')->with('success', 'Félicitation ! votre annonce a été ajouté');
 
+        //Return redirection to @index resource with succes if it's valid
+        return redirect()->route('annonces.index')->with('success', 'Félicitation ! votre annonce a été ajouté');
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource annonce.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Annonce $annonce
+     * @return view show who's compacted data's from annonce
      */
     public function show(Annonce $annonce)
     {
@@ -71,8 +69,8 @@ class AnnonceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Annonce $annonce
+     * @return view Edit who's compacted data's from annonce
      */
     public function edit(Annonce $annonce)
     {
@@ -80,31 +78,36 @@ class AnnonceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource annonce in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Annonce $annonce
+     * @return redirection to @index resource with success if inputs are valid
      */
     public function update(Request $request, Annonce $annonce)
     {
-    //    dd($annonce);
+
+        //$request validate input only if required and unique inputs are valid
         $request->validate([
-            'ref_annonce' => 'required',
+            'ref_annonce' => 'required|unique:annonces,ref_annonce',
             'prix' => 'required',
             'surface' => 'required',
             'nb_piece' => 'required'
         ]);
+
+        //Annonce model updated with all data from request
         $annonce->update($request->all());
+
+        //Return redirection to @index resource with succes if it's valid
         return redirect()->route('annonces.index')
-        ->with('success', 'Annonce mise en ligne');
+            ->with('success', 'Votre annonce a bien été modifié');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Annonce $annonce
+     * @return redirection to @index resource with success if $annonce is delete
      */
     public function destroy(Annonce $annonce)
     {
